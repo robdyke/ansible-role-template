@@ -1,0 +1,30 @@
+---
+# tasks file for org.template
+
+- name: Install "service" command just for the test example
+  package:
+    name: initscripts
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int < 7
+
+- name: Install "systemctl" command just for the test example
+  package:
+    name: systemd
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int > 6
+
+- debug:
+    msg: "TODO replace 'template' by 'role name' in all files"
+
+- debug:
+    msg: "TODO update meta/main.yml"
+
+- debug:
+    msg: "TODO update README.md"
+
+- debug:
+    msg: "TODO write some tasks in tasks/main.yml"
+
+- debug:
+    msg: "TODO update platforms list in molecule/default/molecule.yml, aka on which containers will this role be tested"
+
+- debug:
+    msg: "TODO write validation tests in molecule/default/tests/test_default.py"

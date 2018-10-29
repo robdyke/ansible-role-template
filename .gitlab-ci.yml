@@ -1,0 +1,34 @@
+---
+stages:
+  - requirements
+  - build
+  - test
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip"
+
+cache:
+  paths:
+    - .pip/
+    - virtenv/
+
+before_script:
+  - export HTTP_PROXY=http://10.10.10.10:8000
+  - export HTTPS_PROXY=http://10.10.10.10:8000
+  - pip3.6 install virtualenv
+  - virtualenv virtenv
+  - source virtenv/bin/activate
+
+molecule:
+  stage: test
+  tags:
+    - ansible
+    - docker
+  script:
+    - docker -v
+    - python -V
+    - pip install ansible molecule docker
+    - ansible --version
+    - molecule --version
+    - molecule test
