@@ -6,6 +6,7 @@ driver:
 lint:
   name: yamllint
 platforms:
+  # RHEL
   - name: molecule-template-rhel6
     image: registry.access.redhat.com/rhel6:6.9
   - name: molecule-template-rhel7
@@ -14,12 +15,39 @@ platforms:
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"                   # required for systemd
     command: /usr/sbin/init                                  # required for systemd
+  # CentOS
   - name: molecule-template-centos7
     image: centos:7
     privileged: True
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /usr/sbin/init
+  # Debian
+  - name: molecule-template-debian9-systemd
+    image: jrei/systemd-debian:9
+    privileged: True
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /lib/systemd/systemd
+  - name: molecule-template-debian10-systemd
+    image: jrei/systemd-debian:10
+    privileged: True
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /lib/systemd/systemd
+  # Ubuntu
+  - name: molecule-template-ubuntu1604-systemd
+    image: solita/ubuntu-systemd:16.04
+    privileged: True
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /bin/bash -c exec /sbin/init --log-target=journal 3>&1
+  - name: molecule-template-ubuntu1804-systemd
+    image: solita/ubuntu-systemd:18.04
+    privileged: True
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /bin/bash -c exec /sbin/init --log-target=journal 3>&1
 provisioner:
   name: ansible
   log: true
