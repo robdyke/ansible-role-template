@@ -1,6 +1,17 @@
-pipeline:
-  test:
-    image: python:3-slim-stretch
-    commands:
-      - pip3 install ansible molecule
-      - molecule test 
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: test
+  image: python:3-slim-stretch
+  privileged: true
+  commands:
+    - pip3 install ansible molecule
+    - molecule test
+  volumes:
+    - name: docker
+      path: /var/run/docker.sock
