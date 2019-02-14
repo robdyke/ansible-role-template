@@ -1,3 +1,4 @@
+---
 kind: pipeline
 name: default
 
@@ -6,12 +7,16 @@ platform:
   arch: amd64
 
 steps:
-- name: test
-  image: python:3-slim-stretch
-  privileged: true
-  commands:
-    - pip3 install ansible molecule
-    - molecule test
-  volumes:
-    - name: docker
-      path: /var/run/docker.sock
+  - name: test
+    image: python:3-slim-stretch
+    commands:
+      - apt-get update
+      - apt-get install -y gcc
+      - pip3 install docker ansible molecule
+      - molecule test
+    privileged: true
+    volumes:
+      - name: sock
+        path: /var/run/docker.sock
+      - name: cgroup
+        path: /sys/fs/cgroup:/sys/fs/cgroup
