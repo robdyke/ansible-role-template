@@ -1,0 +1,6 @@
+pipeline:
+  test:
+    image: python:3-slim-stretch
+    commands:
+      - pip3 install ansible molecule
+      - molecule test 
