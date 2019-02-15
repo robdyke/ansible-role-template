@@ -7,6 +7,16 @@ platform:
   arch: amd64
 
 steps:
+  # - name: test
+  #   image: lowess/drone-molecule
+  #   # privileged: true
+  #   commands:
+  #     - test
+  #   volumes:
+  #     - name: sock
+  #       path: /var/run/docker.sock
+  #     - name: cgroup
+  #       path: /sys/fs/cgroup:/sys/fs/cgroup
   - name: test
     image: python:3-slim-stretch
     commands:
