@@ -6,7 +6,7 @@ pipeline {
     // sudo yum -y install python36u python36u-pip python36u-devel git curl gcc
     // git config --global http.sslVerify false
     // sudo curl -fsSL get.docker.com | bash
-    label 'CENTOS7_Central_ Pipeline'
+    label 'docker'
   }
 
   stages {
