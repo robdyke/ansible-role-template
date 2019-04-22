@@ -11,6 +11,9 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 # Indentation rules for Python and Yaml
-[*.{py,yml,yaml}]
+[*.{py}]
 indent_style = space
 indent_size = 4
+[*.{yml,yaml,sls}]
+indent_style = space
+indent_size = 2
