@@ -30,6 +30,6 @@ steps:
 
 - script: |
     source virtenv/bin/activate
-    molecule test --scenario-name docker
+    molecule test --scenario-name default
   condition: succeededOrFailed()
   displayName: 'Molecule test'
