@@ -6,12 +6,12 @@ Ansible role template, template or boilerplate as you prefer. With Molecule + Te
 
 Here's a TODO list to get started ASAP with you role development
 
-- Clone this repository `git clone git@framagit.org:rg/ansible-role-template.git`
+- Clone this repository `git clone git@github.com:robdyke/ansible-role-template.git`
 - Change git remote `git remote set-url origin git@gitlab.local:ansible/ansible-role-YOUR_ROLE_NAME.git`
 - Replace 'template' by 'role name' in all files
 - Write some tasks in `tasks/main.yml`
-- Write [TestInfra](http://TestInfra.readthedocs.io/) validation tests in `molecule/default/tests/test_default.py`
-- Remove `molecule/default/tests/__pycache__` if it exists
+- Write [TestInfra](http://TestInfra.readthedocs.io/) validation tests in `molecule/tests/test_default.py`
+- Remove `molecule/tests/__pycache__` if it exists
 - Update platforms and roles dependencies lists in `meta/main.yml`
 - If you've roles dependencies, rename `molecule/default/requirements.sample.yml` in `molecule/default/requirements.yml` and update its content
 - Update platforms list in `molecule/default/molecule.yml`

@@ -1,0 +1,18 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: azure
+lint:
+  name: yamllint
+platforms:
+  - name: instance
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+verifier:
+  name: testinfra
+  directory: ../tests
+  lint:
+    name: flake8
