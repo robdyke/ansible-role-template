@@ -1,0 +1,35 @@
+# Ansible TDD using Azure Pipelines
+# http://docs.microsoft.com/azure/devops/pipelines/languages/docker?view=vsts
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+steps:
+- checkout: self
+  path: $(Build.Repository.Name)
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: 3.6
+    architecture: 'x64'
+
+- script: |
+    pip3.6 install virtualenv
+    virtualenv virtenv
+    source virtenv/bin/activate
+    pip install --upgrade ansible molecule docker
+  displayName: 'Install requirements'
+
+- script: |
+    source virtenv/bin/activate
+    docker -v
+    python -V
+    ansible --version
+    molecule --version
+  displayName: 'Display versions'
+
+- script: |
+    source virtenv/bin/activate
+    molecule test --scenario-name docker
+  condition: succeededOrFailed()
+  displayName: 'Molecule test'
